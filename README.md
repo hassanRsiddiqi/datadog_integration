@@ -1,19 +1,21 @@
 # DatadogIntegration
+This is the sample project to install datadog in phoenix using Spandex lib.
 
-To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+##### Spandex
+Way to trace a module by spandex.
+```elixir
+use Spandex.Decorators
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+@decorate span(tracer: DatadogIntegration.Datadog.Tracer)
+def function_to_trace(), do: ["EXECUTION_HERE"]
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+or If you want to trace everything in module
+use DatadogIntegration.Datadog.ModuleTracer
 
-## Learn more
+https://github.com/spandex-project/spandex#decorators.
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+
+#### Configuration
+* Add `SPANDEX_BATCH_SIZE` to 10 and `SPANDEX_SYNC_THRESHOLD` to 100 in env variables.

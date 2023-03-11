@@ -73,3 +73,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# optionally disable traces in dev
+config :datadog_integration, DatadogIntegration.Datadog.Tracer,
+  disabled?: true,
+  env: "dev"

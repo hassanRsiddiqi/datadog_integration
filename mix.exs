@@ -46,9 +46,16 @@ defmodule DatadogIntegration.MixProject do
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+      {:telemetry_metrics_statsd, "~> 0.6.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:spandex, "~> 3.0.3"},
+      {:spandex_datadog, "~> 1.2"},
+      {:spandex_phoenix, "~> 1.0"},
+      {:spandex_ecto, "~> 0.7"},
+      {:decorator, "~> 1.2"},
+      {:logger_json, "~> 5.0"}
     ]
   end
 

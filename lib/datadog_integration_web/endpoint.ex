@@ -1,5 +1,6 @@
 defmodule DatadogIntegrationWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :datadog_integration
+  use SpandexPhoenix
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -9,6 +10,8 @@ defmodule DatadogIntegrationWeb.Endpoint do
     key: "_datadog_integration_key",
     signing_salt: "9F5i6FrB"
   ]
+  
+  plug LoggerJSON.Plug
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
