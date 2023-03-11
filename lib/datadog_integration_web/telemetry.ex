@@ -11,7 +11,15 @@ defmodule DatadogIntegrationWeb.Telemetry do
     children = [
       # Telemetry poller will execute the given period measurements
       # every 10_000ms. Learn more here: https://hexdocs.pm/telemetry_metrics
-      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}
+      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000},
+      {
+        TelemetryMetricsStatsd,
+        metrics: metrics(),
+        host: Application.fetch_env!(:datadog_integration, :datadog) |> Keyword.fetch!(:host),
+        port: Application.fetch_env!(:datadog_integration, :datadog) |> Keyword.fetch!(:listning_port),
+        prefix: "elixir",
+        formatter: :datadog
+      }
       # Add reporters as children of your supervision tree.
       # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
     ]

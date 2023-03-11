@@ -28,3 +28,8 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Disable traces
+config :datadog_integration, DatadogIntegration.Datadog.Tracer,
+  disabled?: true,
+  env: "test"
